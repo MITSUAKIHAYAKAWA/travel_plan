@@ -1,0 +1,48 @@
+<%= render "shared/second-header"%>
+
+<%= form_with model: @user, url: user_registration_path, class: "registration-main", local: true do |f| %>
+<div class="form-wrap">
+  <div class="form-header">
+    <h3 class="form-header-text">
+      アカウントを作成
+    </h3>
+  </div>
+
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">ニックネーム</label> 
+    </div>
+    <%= f.text_area :nickname, class:"input-default", id:"nickname", placeholder:"ニックネーム (例: Travel太郎)", maxlength:"20" %>
+  </div>
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">氏名</label>
+    </div>
+    <%= f.text_area :name, class:"input-default", id:"user_name", placeholder:"氏名 (例:旅行 太郎)" %>
+  </div>
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">メールアドレス</label>
+    </div>
+    <%= f.email_field :email, class:"input-default", id:"email", placeholder:"PC・スマートフォンどちらでも可", autofocus: true %>
+  </div>
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">パスワード</label>
+    </div>
+    <%= f.password_field :password, class:"input-default", id:"password", placeholder:"8文字以上の半角英数" %>
+    <p class="info-text">※英字と数字を1文字以上含めて設定してください</p>
+  </div>
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">もう一度パスワードを入力してください</label>
+    </div>
+    <%= f.password_field :password_confirmation, class:"input-default", id:"password_confirmation", placeholder:"同じパスワード" %>
+  </div>
+  <div class="register-btn">
+    <%= f.submit "アカウント登録", class:"register-yellow-btn" %>
+  </div>
+</div>
+<% end %>
+
+<%= render "shared/second-footer"%>
