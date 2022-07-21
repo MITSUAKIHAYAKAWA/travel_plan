@@ -1,0 +1,15 @@
+.login-btn {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.login-yellow-btn {
+  width: 100%;
+  background: #fff099;
+  border: 1px solid #fff099;
+  color: #000000;
+  line-height: 48px;
+  font-size: 20px;
+  cursor: pointer;
+}
