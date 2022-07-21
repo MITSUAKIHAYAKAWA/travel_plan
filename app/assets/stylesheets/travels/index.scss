@@ -1,0 +1,29 @@
+a {
+  text-decoration: none;
+}
+
+.main {
+  background-color: #f8f8f8;
+}
+
+.title-contents {
+  width: 100vw;
+  background-image: image-url("syoukeinomiti.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+}
+
+.title-contents-one {
+  width: 100vw;
+  padding: 5vh 15vw;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+}
+
+.title-contents-two {
+  width: 100vw;
+  padding: 3vh 15vw;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+}
