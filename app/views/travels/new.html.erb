@@ -2,7 +2,7 @@
 
 <div class="travel-contents">
   <h3 class="travel-header-sub">旅行の記録を作成</h3>
-  <%= form_with model: @travel, url: "#", local: true do |f| %>
+  <%= form_with model: @travel, url: travels_path, local: true do |f| %>
   <div class="travel-content">
     <div class="weight-bold-text">
       タイトル
@@ -29,23 +29,26 @@
       期間
       <span class="indispensable">必須</span>
     </div>
-    <%= f.collection_select(:travel_time_one_id, [], :id, :name, {}, {class:"time-select-box", id:"travel-time"}) %>
+    <%= f.date_field :travel_time_one, placeholder: "day", class:"time-select-box" %>
     〜
-    <%= f.collection_select(:travel_time_two_id, [], :id, :name, {}, {class:"time-select-box", id:"travel-time"}) %>
+    <%= f.date_field :travel_time_two, placeholder: "day", class:"time-select-box" %>
   </div>
   <div class="travel-content">
     <div class="weight-bold-text">
       旅行先
       <span class="indispensable">必須</span>
     </div>
-    <%= f.collection_select(:destination_id, [], :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+    <%= f.collection_select(:destination_id, Destination.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
   </div>
   <div class="travel-content">
     <div class="weight-bold-text">
       交通手段
       <span class="indispensable">任意</span>
     </div>
-    <%= f.collection_select(:transpotation_id, [], :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+    <%= f.collection_select(:transportation_id, Transportation.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+  </div>
+  <div class="sell-btn-contents">
+    <%= f.submit "投稿する" ,class:"sell-btn" %>
   </div>
   <% end %>
 </div>

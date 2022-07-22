@@ -34,13 +34,15 @@ ActiveRecord::Schema.define(version: 2022_07_22_013653) do
   end
 
   create_table "travels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "travel_time_one_id"
-    t.integer "travel_time_two_id"
+    t.date "travel_time_one"
+    t.date "travel_time_two"
     t.integer "destination_id"
     t.integer "transportation_id"
     t.string "travel_title"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_travels_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -58,4 +60,5 @@ ActiveRecord::Schema.define(version: 2022_07_22_013653) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "travels", "users"
 end
