@@ -7,8 +7,8 @@
   flex-direction: column;
 }
 
-.second-fotter-logo {
-  width: 100px;
-  height: 30px;
-  margin: 50px auto;
+.second-footer-logo {
+  margin: 0 auto;
+  display: block;
+  margin-top: 50px;
 }
