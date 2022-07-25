@@ -1,0 +1,26 @@
+.show_contents {
+  padding: 50px;
+}
+
+img.travel-photo_sub {
+  width: 400px;
+}
+
+.travel-photo_sub {
+  display: block;
+  margin: 0 auto;
+}
+
+.travel_title_show {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.travel_times {
+  font-size: 25px;
+  line-height: 25px;
+  margin: 15px 0;
+  font-weight: 600;
+}

@@ -1,0 +1,19 @@
+<%= render "shared/second-header" %>
+
+<div class="show_contents">
+  <div class="show_main">
+    <div class="travel-photo">
+      <%= image_tag @travel.image , class:"travel-photo_sub" %>
+    </div>
+    <div class="travel_title_show">
+      <%= @travel.travel_title %>
+    </div>
+    <p class="travel_times">旅行期間</p>
+    <div class="travel_time_main">
+      <%= @travel.travel_time_one %> 〜 <%= @travel.travel_time_two %>
+    </div>
+  </div>
+  <div class="travel_comment">
+    <% if user_signed_in? && current_user.id == @travel.user_id %>
+    <% end %>
+</div>
