@@ -1,7 +1,6 @@
 <header class='top-page-header'>
   <div class="header-main">
-    <%= link_to "〜旅想人〜", root_path, class: "logo" %>
-    <%#= image_tag("onomiti.jpg", class:"header-image") %>
+    <%= link_to image_tag("title-logo.png", class: "logo"), root_path %>
   </div>
   <ul class='lists-right'>
     <% if user_signed_in? %>
