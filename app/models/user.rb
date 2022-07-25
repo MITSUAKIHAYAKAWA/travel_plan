@@ -10,4 +10,5 @@ class User < ApplicationRecord
   end
 
   has_many :travels
+  has_many :impressions
 end

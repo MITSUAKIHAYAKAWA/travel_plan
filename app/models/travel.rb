@@ -14,6 +14,7 @@ class Travel < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :destination
   belongs_to :transportation
+  has_one :impression
 
   
 end
