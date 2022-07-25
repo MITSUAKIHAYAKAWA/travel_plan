@@ -11,15 +11,19 @@ class TravelsController < ApplicationController
 
   def create
     @travel = Travel.new(travel_params)
-    if @travel.save
-      redirect_to root_path
+    if @travel.travel_time_one <= @travel.travel_time_two
+      if @travel.save
+        redirect_to root_path
+      else
+        render :new
+      end
     else
       render :new
     end
   end
 
   def show
-    @taravel = Travel.find(params[:id])
+    @travel = Travel.find(params[:id])
   end
 
   private
