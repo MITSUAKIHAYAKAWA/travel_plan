@@ -1,7 +1,8 @@
 class TravelsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
-  
+
   def index
+    @travels = Travel.limit(6).order("id DESC")
   end
 
   def new
@@ -9,13 +10,16 @@ class TravelsController < ApplicationController
   end
 
   def create
-    binding.pry
     @travel = Travel.new(travel_params)
     if @travel.save
       redirect_to root_path
     else
       render :new
     end
+  end
+
+  def show
+    @taravel = Travel.find(params[:id])
   end
 
   private

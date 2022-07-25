@@ -1,33 +1,65 @@
 <%= render "shared/header" %>
 
-<%# 画面上部帯表示部分 %>
-<div class="main">
-  <div class="title-contents">
-    <div class="title-contents-one">
-      <h1 class="title-message-one">
-        旅の思い出をみんなで共有
-      </h1>
-      <h3 class="title-message-one_sub">
-        あなたの旅はどんなもの？<br>
-        あなたの思い出が次は誰かの旅になる。
-      </h3>
+<div class="index-main">
+  <%# 画面上部帯表示部分 %>
+  <div class="main">
+    <div class="title-contents">
+      <div class="title-contents-one">
+        <h1 class="title-message-one">
+          旅の思い出をみんなで共有
+        </h1>
+        <h3 class="title-message-one_sub">
+          あなたの旅はどんなもの？<br>
+          あなたの思い出が次は誰かの旅になる。
+        </h3>
+      </div>
+      <div class="title-contents-two">
+        <h1 class="title-message-two">
+          新しい旅を見つけよう！
+        </h1>
+        <h3 class="title-message-two_sub">
+          次はどこに行こうかな？<br>
+          悩む時間も楽しくて。
+        </h3>
+      </div>
     </div>
-    <div class="title-contents-two">
-      <h1 class="title-message-two">
-        新しい旅を見つけよう！
-      </h1>
-      <h3 class="title-message-two_sub">
-        次はどこに行こうかな？<br>
-        悩む時間も楽しくて。
-      </h3>
-    </div>
+    <%= link_to(new_travel_path, class: 'purchase-btn') do %>
+    <span class='purchase-btn-text'>投稿する</span>
+    <%= image_tag 'icon_010650_128.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+    <% end %>
   </div>
-  <%= link_to(new_travel_path, class: 'purchase-btn') do %>
-  <span class='purchase-btn-text'>投稿する</span>
-  <%= image_tag 'icon_010650_128.png' , size: '185x50' ,class: "purchase-btn-icon" %>
-  <% end %>
+
+  <%= render "shared/search-form" %>
+
+  <%# 投稿一覧 %>
+  <div class="newest-img">
+    <div class="newest">最新6件を表示</div>
+  </div>
+  <div class="lists">
+    <% @travels.each do |travel| %>
+    <li class='list'>
+      <%= link_to "/travels/#{travel.id}" do %>
+        <div class='travel-img-content'>
+          <%= image_tag travel.image, class: "travel-img" %>
+        </div>
+      <% end %>
+      <div class='travel-info'>
+        <div class='travel-title'>
+          <%= travel.travel_title %>
+        </div>
+        <div class="travel-gone">
+          <div class="travel-destination">
+            <%= travel.destination.name %>
+          </div>
+          <div class="travel-time">
+            <%= travel.travel_time_one %> 〜 <%= travel.travel_time_two %>
+          </div>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </div>
 </div>
 
-<%= render "shared/search-form" %>
-
 <%= render "shared/second-footer" %>
+<%= render "shared/footer" %>
