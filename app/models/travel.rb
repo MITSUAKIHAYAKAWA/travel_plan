@@ -1,6 +1,7 @@
 class Travel < ApplicationRecord
   has_one_attached :image
   belongs_to :user
+  has_one :impression
   
   with_options presence: true do
     validates :transportation_id, numericality: { other_than: 1 } 
@@ -14,7 +15,7 @@ class Travel < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :destination
   belongs_to :transportation
-  has_one :impression
+  
 
   
 end

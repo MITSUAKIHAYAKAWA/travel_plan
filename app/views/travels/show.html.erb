@@ -14,6 +14,19 @@
     <div class="travel_time_main">
       <%= @travel.travel_time_one %> 〜 <%= @travel.travel_time_two %>
     </div>
-    <% if user_signed_in? && current_user.id == @travel.user_id %>
+
+    <% if user_signed_in? && current_user.id == @travel.user_id && unless @impression.present? %>
+      <%= form_with(model: [@travel, @travel_impression], local: true) do |form| %>
+        <%= form.text_area :impression, placeholder: "旅行の感想を書こう", class:"impression" %>
+        <%= form.file_field :images, multiple: true, class:"impression_image_form" %>
+        <%= form.submit "送信する", class:"impressino_submit_btn" %>
+      <% end %>
+    <% end %>
+    <% end %>
+    <% if @impression.present? %>
+      <% @impression.images.each do |image| %>
+        <%= image_tag image, class:"impression_image" %>
+      <% end%>
+      <%= @impression.impression %>
     <% end %>
 </div>

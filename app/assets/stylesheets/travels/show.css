@@ -24,3 +24,7 @@ img.travel-photo_sub {
   margin: 15px 0;
   font-weight: 600;
 }
+
+img.impression_image {
+  width: 40vw;
+}

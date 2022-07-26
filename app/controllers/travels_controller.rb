@@ -24,6 +24,9 @@ class TravelsController < ApplicationController
 
   def show
     @travel = Travel.find(params[:id])
+    @travel_impression = TravelImpression.new
+    travel_id = @travel.id
+    @impression = TravelImpression.find_by(travel_id: travel_id)
   end
 
   private
