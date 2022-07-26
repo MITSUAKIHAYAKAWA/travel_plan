@@ -11,4 +11,5 @@ class User < ApplicationRecord
 
   has_many :travels
   has_many :impressions
+  has_many :favorites, dependent: :destroy
 end
