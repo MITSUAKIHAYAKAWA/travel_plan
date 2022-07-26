@@ -1,3 +1,10 @@
 <header class='second-header'>
   <%= link_to image_tag("title-logo.png", class:"second-logo"), "/" %>
+  <% if current_page?("/travels/#{@travel.id}") %>
+    <ul class="page_btn_list">
+      <li><%= link_to "編集", edit_travel_path(@travel.id), class:"page_edit" %></li>
+      <li><%= link_to "削除", travel_path(@travel.id), method: :delete, class:"page_destroy" %></li>
+    </ul>
+  <% end %>
+  </div>
 </header>
