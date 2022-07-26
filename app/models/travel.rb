@@ -1,7 +1,7 @@
 class Travel < ApplicationRecord
   has_one_attached :image
   belongs_to :user
-  has_one :impression
+  has_one :travel_impression, dependent: :destroy
   
   with_options presence: true do
     validates :transportation_id, numericality: { other_than: 1 } 
