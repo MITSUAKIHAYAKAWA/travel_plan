@@ -1,0 +1,27 @@
+<%= render "shared/header" %>
+<%= render "shared/search-form" %>
+<table class="table table-hover table-inverse">
+  <% if @users.present? || @travels.present? %>
+    <% if @range == "User" %>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.nickname %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% else %>
+      <tbody>
+        <% @travels.each do |travel| %>
+          <tr>
+              <td><%= image_tag travel.image.variant(resize: "300x300") %></td>
+              <td><%= travel.travel_title %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    <% end %>
+  <% else %>
+    検索結果はありませんでした
+  <% end %>
+</table>
+<%= render "shared/footer" %>

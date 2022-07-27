@@ -17,6 +17,20 @@ class Travel < ApplicationRecord
     validates :image
   end
 
+  def self.looks(search, key_word)
+    if search == "perfect_match"
+      @travel = Travel.where("travel_title LIKE?","#{key_word}")
+    elsif search == "forward_match"
+      @travel = Travel.where("travel_title LIKE?","#{key_word}%")
+    elsif search == "backward_match"
+      @travel = Travel.where("travel_title LIKE?","%#{key_word}")
+    elsif search == "partial_match"
+      @travel = Travel.where("travel_title LIKE?","%#{key_word}%")
+    else
+      @travel = Travel.all
+    end
+  end
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :destination
   belongs_to :transportation
