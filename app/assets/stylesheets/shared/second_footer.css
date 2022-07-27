@@ -5,6 +5,6 @@
 
 #back {
   position: fixed;
-  left: calc(50% - 100px);
+  left: 15px;
   bottom: 10px;
 }

@@ -1,0 +1,5 @@
+<%= form_with(model: [@travel, @travel_impression], local: true) do |form| %>
+  <%= form.text_area :impression, placeholder: "旅行の感想を書こう", class:"impression" %>
+  <%= form.file_field :images, multiple: true, class:"impression_image_form" %>
+  <%= form.submit "送信する", class:"impressino_submit_btn" %>
+<% end %>
