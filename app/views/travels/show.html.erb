@@ -17,17 +17,40 @@
     </div>
 
     <% if user_signed_in? && current_user.id == @travel.user_id && unless @impression.present? %>
+    <div class="impression-form">
       <%= form_with(model: [@travel, @travel_impression], local: true) do |form| %>
         <%= form.text_area :impression, placeholder: "旅行の感想を書こう", class:"impression" %>
         <%= form.file_field :images, multiple: true, class:"impression_image_form" %>
         <%= form.submit "送信する", class:"impressino_submit_btn" %>
       <% end %>
+    </div>
     <% end %>
+    <% end %>
+    <% if user_signed_in? && current_user.id == @travel.user_id && @impression.present? %>
+      <%= link_to "コメントを編集する", edit_travel_travel_impression_path(@impression.id) %>
     <% end %>
     <% if @impression.present? %>
-      <% @impression.images.each do |image| %>
-        <%= image_tag image, class:"impression_image" %>
-      <% end%>
-      <%= @impression.impression %>
+      <div class="container">
+        <div class="btn btn-prev js-prev-btn"></div>
+        <div class="btn btn-next js-next-btn"></div>
+        <div class="slider-container">
+          <ul class="slider-list js-slider-container">
+            <% @impression.images.each do |image| %>
+              <li class="slider-item js-slider-item"><%= image_tag image, class:"impression_image" %></li>
+            <% end%>
+          </ul>
+        </div>
+      </div>
+      <div class="travel-comments">
+        <div class="travel-comment">
+          <%= image_tag("memory.png") %>
+        </div>
+        <div class="travel-comments_sub">
+          <%= @impression.impression %>
+        </div>
+      </div>
+    <% else %>
+      <h1>画像は投稿されていません</h1>
     <% end %>
+  </div>
 </div>

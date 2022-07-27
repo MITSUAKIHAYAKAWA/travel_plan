@@ -5,4 +5,6 @@ Rails.application.routes.draw do
     resources :travel_impressions, only: [:create, :edit, :update, :destroy]
     resources :favorites, only: [:create, :destroy]
   end
+
+  get "search" => "searches#search"
 end

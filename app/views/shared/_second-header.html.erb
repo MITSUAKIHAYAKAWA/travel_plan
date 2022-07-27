@@ -1,5 +1,7 @@
 <header class='second-header'>
-  <%= link_to image_tag("title-logo.png", class:"second-logo"), root_path %>
+  <div class="second-header_main">
+    <%= link_to image_tag("title-logo.png", class:"second-logo"), root_path %>
+  </div>
   <% unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
     <% if current_page?("/travels/#{@travel.id}") && user_signed_in? && current_user.id == @travel.user.id %>
     <ul class="page_btn_list">
@@ -9,9 +11,9 @@
     <% else %>
       <% if current_page?("/travels/#{@travel.id}") && user_signed_in? && current_user.id != @travel.user.id %>
         <% if @travel.favorited_by?(current_user) %>
-          <td><%= link_to "ブックマークを外す", travel_favorite_path(@travel), method: :delete %></td>
+          <td><%= link_to "ブックマークを外す", travel_favorite_path(@travel), method: :delete, class:"favorite_break" %></td>
         <% else %>
-          <td><%= link_to "ブックマーク", travel_favorites_path(@travel), method: :post %></td>
+          <td><%= link_to "ブックマーク", travel_favorites_path(@travel), method: :post, class:"favorite_entry" %></td>
         <% end %>
       <% end%>
     <% end %>

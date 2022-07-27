@@ -10,6 +10,24 @@ class TravelImpressionsController < ApplicationController
     end
   end
 
+  def edit
+    @travel = Travel.find(params[:id])
+    travel_id = @travel.id
+    @travel_impression = TravelImpression.find_by(travel_id: travel_id)
+  end
+
+  def update
+    binding.pry
+    @travel = Travel.find(params[:travel_id])
+    travel_id = @travel.id
+    @travel_impression = TravelImpression.find_by(travel_id: travel_id)
+    if @travel_impression.update(travel_impression_params)
+      redirect_to travel_path(@travel.id)
+    else
+      render :edit
+    end
+  end
+
 
   private
 
