@@ -14,16 +14,16 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   def self.looks(search, key_word)
-    if search == "perfect_match"
-      @user = User.where("nickname LIKE?", "#{key_word}")
-    elsif search == "forward_match"
-      @user = User.where("nickname LIKE?","#{key_word}%")
-    elsif search == "backward_match"
-      @user = User.where("nickname LIKE?","%#{key_word}")
-    elsif search == "partial_match"
-      @user = User.where("nickname LIKE?","%#{key_word}%")
-    else
-      @user = User.all
-    end
+    @user = if search == 'perfect_match'
+              User.where('nickname LIKE?', "#{key_word}")
+            elsif search == 'forward_match'
+              User.where('nickname LIKE?', "#{key_word}%")
+            elsif search == 'backward_match'
+              User.where('nickname LIKE?', "%#{key_word}")
+            elsif search == 'partial_match'
+              User.where('nickname LIKE?', "%#{key_word}%")
+            else
+              User.all
+            end
   end
 end

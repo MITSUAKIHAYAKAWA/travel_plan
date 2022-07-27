@@ -61,3 +61,7 @@ gem 'active_hash'
 gem "pry-rails"
 gem 'jquery-rails'
 gem 'haml-rails'
+
+group :development do
+  gem 'rubocop', require: false
+end
