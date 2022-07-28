@@ -30,7 +30,7 @@ a {
   list-style: none;
   display: flex;
   align-items: center;
-  margin-right: 150px;
+  margin-right: 10vw;
 }
 
 .page_destroy {

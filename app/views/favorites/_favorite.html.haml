@@ -1,0 +1,11 @@
+#favorite{ id: @travel.id }
+  - if !Favorite.exists?(user: current_user, travel_id: @travel.id)   # お気に入り未登録の時
+    = link_to travel_favorites_path(@travel), method: :travel, remote: true, class: "favorite-btn favorite-travel" do
+      .i.far.fa-thumbs-up
+        %span いいね！
+        = @travel.favorites.length   # お気に入り登録数
+  - else    # お気に入り登録済みの時
+    = link_to travel_favorites_path(@travel), method: :delete, remote: true, class: "favorite-btn favorite-delete" do
+      .i.far.fa-thumbs-up
+        %span いいね！
+        = @travel.favorites.length
