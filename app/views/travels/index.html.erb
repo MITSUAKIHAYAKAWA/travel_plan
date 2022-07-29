@@ -30,6 +30,14 @@
   </div>
 
   <%= render "shared/search-form" %>
+  
+  <%# タグ一覧%>
+  <div class="tag_lists">
+    <% @tag_list.each do |list| %>
+    <%= link_to list.tag_name, tag_travels_path(tag_id: list.id) %>
+    <%= "(#{list.travels.count})" %>
+    <% end %>
+  </div>
 
   <%# 投稿一覧 %>
   <div class="newest-img">

@@ -3,6 +3,7 @@ class TravelsController < ApplicationController
 
   def index
     @travels = Travel.limit(6).order('id DESC')
+    @tag_list = Tag.all
   end
 
   def new
@@ -48,6 +49,12 @@ class TravelsController < ApplicationController
     @travel = Travel.find(params[:id])
     @travel.destroy
     redirect_to root_path
+  end
+
+  def search
+    @tag_list = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @travels = @tag.travels.all
   end
 
   private
