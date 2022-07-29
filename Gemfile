@@ -60,6 +60,8 @@ gem 'image_processing', '~> 1.2'
 gem 'active_hash'
 gem "pry-rails"
 gem 'jquery-rails'
+gem 'kaminari'
+
 
 group :development do
   gem 'rubocop', require: false
