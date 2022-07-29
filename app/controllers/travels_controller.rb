@@ -11,8 +11,10 @@ class TravelsController < ApplicationController
 
   def create
     @travel = Travel.new(travel_params)
+    tag_list = params[:travel][:tag_name].split(nil)
     if @travel.travel_time_one <= @travel.travel_time_two
       if @travel.save
+        @travel.save_tag(tag_list)
         redirect_to root_path
       else
         render :new
