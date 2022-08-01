@@ -2,7 +2,7 @@ class TravelsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
 
   def index
-    @travels = Travel.limit(6).order('id DESC')
+    @travels = Travel.limit(12).order('id DESC')
     @tag_list = Tag.all
   end
 
@@ -30,6 +30,7 @@ class TravelsController < ApplicationController
     @travel_impression = TravelImpression.new
     travel_id = @travel.id
     @impression = TravelImpression.find_by(travel_id: travel_id)
+    @travel_tags = @travel.tags
   end
 
   def edit
