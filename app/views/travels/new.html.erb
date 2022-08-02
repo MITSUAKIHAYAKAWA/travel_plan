@@ -3,6 +3,7 @@
 <div class="travel-contents">
   <h3 class="travel-header-sub">旅行の記録を作成</h3>
   <%= form_with model: @travel, url: travels_path, local: true do |f| %>
+  <%= f.text_field :tag_name, placeholder: "タグを複数つけるにはスペースを空けてください" %>
   <div class="travel-content">
     <div class="weight-bold-text">
       タイトル

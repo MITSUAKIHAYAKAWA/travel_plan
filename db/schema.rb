@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_26_054140) do
+ActiveRecord::Schema.define(version: 2022_07_28_091933) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -42,6 +42,12 @@ ActiveRecord::Schema.define(version: 2022_07_26_054140) do
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "tag_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "travel_impressions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "impression"
     t.bigint "user_id"
@@ -52,15 +58,25 @@ ActiveRecord::Schema.define(version: 2022_07_26_054140) do
     t.index ["user_id"], name: "index_travel_impressions_on_user_id"
   end
 
+  create_table "travel_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "travel_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_travel_tags_on_tag_id"
+    t.index ["travel_id", "tag_id"], name: "index_travel_tags_on_travel_id_and_tag_id", unique: true
+    t.index ["travel_id"], name: "index_travel_tags_on_travel_id"
+  end
+
   create_table "travels", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "travel_time_one"
     t.date "travel_time_two"
     t.integer "destination_id"
     t.integer "transportation_id"
     t.string "travel_title"
-    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_travels_on_user_id"
   end
 
@@ -83,5 +99,7 @@ ActiveRecord::Schema.define(version: 2022_07_26_054140) do
   add_foreign_key "favorites", "users"
   add_foreign_key "travel_impressions", "travels"
   add_foreign_key "travel_impressions", "users"
+  add_foreign_key "travel_tags", "tags"
+  add_foreign_key "travel_tags", "travels"
   add_foreign_key "travels", "users"
 end

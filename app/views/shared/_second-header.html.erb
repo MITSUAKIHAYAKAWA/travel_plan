@@ -2,6 +2,8 @@
   <div class="second-header_main">
     <%= link_to image_tag("title-logo.png", class:"second-logo"), root_path %>
   </div>
+
+  <%#　詳細ページ・ヘッダー右サイド表示文字　%>
   <% unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
     <% if current_page?("/travels/#{@travel.id}") && user_signed_in? && current_user.id == @travel.user.id %>
     <ul class="page_btn_list">

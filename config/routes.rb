@@ -7,4 +7,8 @@ Rails.application.routes.draw do
   end
 
   get "search" => "searches#search"
+
+  resources :tags do
+    get "travels", to: "travels#search"
+  end
 end

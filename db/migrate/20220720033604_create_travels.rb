@@ -6,7 +6,6 @@ class CreateTravels < ActiveRecord::Migration[6.0]
       t.integer :destination_id
       t.integer :transportation_id
       t.string :travel_title
-      t.references :user, foreign_key: true
       t.timestamps
     end
   end

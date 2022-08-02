@@ -5,18 +5,22 @@
     <div class="travel-photo">
       <%= image_tag @travel.image , class:"travel-photo_sub" %>
     </div>
+    <div>タグ</div>
+    <% @travel_tags.each do |tag| %>
+      <span><%= link_to tag.tag_name, tag_travels_path(tag_id: tag.id) %>
+      <%= "(#{tag.travels.count})" %>
+    <% end %>
     <div class="travel_title_show">
       <%= @travel.travel_title %>
     </div>
   </div>  
-  </div>
   <div class="travel_comment">
     <p class="travel_times">旅行期間</p>
     <div class="travel_time_main">
       <%= @travel.travel_time_one %> 〜 <%= @travel.travel_time_two %>
     </div>
 
-    <% if user_signed_in? && current_user.id == @travel.user_id && unless @impression.present? %>
+    <% if user_signed_in? && current_user.id == @travel.user_id && !@impression.present? %>
     <div class="impression-form">
       <%= form_with(model: [@travel, @travel_impression], local: true) do |form| %>
         <%= form.text_area :impression, placeholder: "旅行の感想を書こう", class:"impression" %>
@@ -24,7 +28,6 @@
         <%= form.submit "送信する", class:"impressino_submit_btn" %>
       <% end %>
     </div>
-    <% end %>
     <% end %>
     <% if user_signed_in? && current_user.id == @travel.user_id && @impression.present? %>
       <%= link_to "コメントを編集する", edit_travel_travel_impression_path(@impression.id) %>
@@ -54,3 +57,7 @@
     <% end %>
   </div>
 </div>
+
+<footer class="footer">
+  <%= render "shared/footer" %>
+</footer>
