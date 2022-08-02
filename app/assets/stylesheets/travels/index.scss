@@ -7,7 +7,8 @@ a {
 }
 
 .title-contents {
-  background-image: image-url("syoukeinomiti.jpeg");
+  height: 350px;
+  background-image: image-url("syoukei.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top center;
@@ -15,14 +16,14 @@ a {
 
 .title-contents-one {
   width: 100%;
-  padding: 3vh 15vw;
+  padding: 1vh 15vw;
   color: #fff;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 
 .title-contents-two {
   width: 100%;
-  padding: 3vh 15vw;
+  padding: 1vh 15vw;
   color: #fff;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
