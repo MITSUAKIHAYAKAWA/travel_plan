@@ -4,10 +4,12 @@
 <ul class="tag_lists">
 <% @tag_list.each do |list| %>
   <span>
+  <% unless list.travels.count == 0 %>
   <li class="tag_lists_sub">
     <%= link_to list.tag_name, tag_travels_path(tag_id: list.id) %>
     <%= "(#{list.travels.count})" %><br>
   </li>
+  <% end %>
   </span>
 <% end %>
 </ul>
