@@ -1,11 +1,12 @@
 <h2><%= link_to "投稿一覧", root_path %></h2>
-
+<div class="tag-search">
 <% @tag_list.each do |list| %>
   <span>
     <%= link_to list.tag_name, tag_travels_path(tag_id: list.id) %>
     <%= "(#{list.travels.count})" %><br>
   </span>
 <% end %>
+</div>
 <%= "タグが - " %>
   <strong><%= "#{@tag.tag_name}" %>
 <%= " - の投稿者一覧" %><br>
@@ -18,3 +19,4 @@
   <%= travel.travel_title %>
   <%= travel.user.nickname %>
 <% end %>
+<%= paginate(@travels) %>

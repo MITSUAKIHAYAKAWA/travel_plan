@@ -55,7 +55,7 @@ class TravelsController < ApplicationController
   def search
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @travels = @tag.travels.all
+    @travels = @tag.travels.all.page(params[:page]).per(5).order("id DESC")
   end
 
   private

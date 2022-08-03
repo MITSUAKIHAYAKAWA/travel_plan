@@ -26,6 +26,12 @@
       <div class="travel_time_main">
         <%= @travel.travel_time_one %> 〜 <%= @travel.travel_time_two %>
       </div>
+      <div class="travel-des">
+        <p class="travel_times">旅行先：</p>
+        <div class="travel_time_main">
+          <%= @travel.destination.name %>
+        </div>
+      </div>
     </div>
 
     <% if user_signed_in? && current_user.id == @travel.user_id && @impression.present? %>
