@@ -1,38 +1,41 @@
 <%= render "shared/second-header" %>
 
-<div class="show_contents">
-  <div class="show_main">
-    <div class="travel-photo">
-      <%= image_tag @travel.image , class:"travel-photo_sub" %>
-    </div>
-    <div>タグ</div>
-    <% @travel_tags.each do |tag| %>
-      <span><%= link_to tag.tag_name, tag_travels_path(tag_id: tag.id) %>
-      <%= "(#{tag.travels.count})" %>
-    <% end %>
+  <div class="show_content_top"> <%# show_main %>
     <div class="travel_title_show">
       <%= @travel.travel_title %>
     </div>
-  </div>  
-  <div class="travel_comment">
-    <p class="travel_times">旅行期間</p>
-    <div class="travel_time_main">
-      <%= @travel.travel_time_one %> 〜 <%= @travel.travel_time_two %>
+    <div class="show_photo"><%# travel_photo %>
+      <%= image_tag @travel.image , class:"show_photo_sub" %><%#travel-photo_sub%>
     </div>
-
-    <% if user_signed_in? && current_user.id == @travel.user_id && !@impression.present? %>
-    <div class="impression-form">
-      <%= form_with(model: [@travel, @travel_impression], local: true) do |form| %>
-        <%= form.text_area :impression, placeholder: "旅行の感想を書こう", class:"impression" %>
-        <%= form.file_field :images, multiple: true, class:"impression_image_form" %>
-        <%= form.submit "送信する", class:"impressino_submit_btn" %>
+    <p class="show_tags_tag">登録タグ</p>
+    <div class="show_tags" >
+      <% @travel_tags.each do |tag| %>
+        <span><%= link_to tag.tag_name, tag_travels_path(tag_id: tag.id) %></span>
+        <div class="show_tags">
+          <%= "(#{tag.travels.count})" %>
+        </div>
       <% end %>
     </div>
-    <% end %>
+  </div>
+
+  <%# 投稿コンテンツ表示欄 %>
+  <div class="show_contents">
+    
+    <div class="travel_comment">
+      <p class="travel_times">旅行期間：</p>
+      <div class="travel_time_main">
+        <%= @travel.travel_time_one %> 〜 <%= @travel.travel_time_two %>
+      </div>
+    </div>
+
     <% if user_signed_in? && current_user.id == @travel.user_id && @impression.present? %>
       <%= link_to "コメントを編集する", edit_travel_travel_impression_path(@impression.id) %>
     <% end %>
+    
+    <%# 詳細コメント・画像コンテンツを表示 %>
+    <div class="container_size">
     <% if @impression.present? %>
+      <%# 画像をスライダーで表示 %>
       <div class="container">
         <div class="btn btn-prev js-prev-btn"></div>
         <div class="btn btn-next js-next-btn"></div>
@@ -44,6 +47,9 @@
           </ul>
         </div>
       </div>
+    </div>
+
+      <%# 旅行の感想を表示 %>
       <div class="travel-comments">
         <div class="travel-comment">
           <%= image_tag("memory.png") %>
@@ -53,11 +59,18 @@
         </div>
       </div>
     <% else %>
-      <h1>画像は投稿されていません</h1>
+      <h1 class="no_post">まだ投稿されていません</h1>
+    <% end %>
+
+    <% if user_signed_in? && current_user.id == @travel.user_id && !@impression.present? %>
+    <div class="impression-form">
+      <%= form_with(model: [@travel, @travel_impression], local: true) do |form| %>
+        <%= form.text_area :impression, placeholder: "旅行の感想を書こう", class:"impression" %>
+        <%= form.file_field :images, multiple: true, class:"impression_image_form" %>
+        <%= form.submit "送信する", class:"impressino_submit_btn" %>
+      <% end %>
+    </div>
     <% end %>
   </div>
-</div>
 
-<footer class="footer">
-  <%= render "shared/footer" %>
-</footer>
+<%= render "shared/footer" %>

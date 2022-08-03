@@ -12,7 +12,7 @@ class TravelsController < ApplicationController
 
   def create
     @travel = Travel.new(travel_params)
-    tag_list = params[:travel][:tag_name].split(nil)
+    tag_list = params[:travel][:tag_name].split(',')
     if @travel.travel_time_one <= @travel.travel_time_two
       if @travel.save
         @travel.save_tag(tag_list)
@@ -35,11 +35,15 @@ class TravelsController < ApplicationController
 
   def edit
     @travel = Travel.find(params[:id])
+    @tag_list = @travel.tags.pluck(:tag_name).join(',')
   end
 
   def update
     @travel = Travel.find(params[:id])
+    tag_list = params[:travel][:tag_name].split(',')
+    @travel.save_tag(tag_list)
     if @travel.update(travel_params)
+
       redirect_to travel_path(@travel.id)
     else
       render :edit
