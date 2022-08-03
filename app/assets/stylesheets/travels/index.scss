@@ -28,21 +28,14 @@ a {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 
-.newest-img {
-  background-image: image-url('_r_ribbon0425_s256_ribbon0425_4.png');
-  background-size: contain;
-  width: 400px;
-  height: 99px;
-  margin: 0 auto;
-  margin-bottom: 15px;
-  padding-top: 30px;
-}
-
 .newest {
-  margin-left: 100px;
+  height: 45px;
+  margin: 50px 0 30px 10px;
   line-height: 30px;
   font-size: 30px;
-  padding: 0 0 10px 0;
+  border-bottom: 2px solid #000000;
+  border-left: 3px double #000000;
+  padding: 0 0 15px 15px;
 }
 
 .travel-img-content {
