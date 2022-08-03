@@ -1,11 +1,18 @@
 <h2><%= link_to "投稿一覧", root_path %></h2>
+<%# タグ一覧 %>
 <div class="tag-search">
+<ul class="tag_lists">
 <% @tag_list.each do |list| %>
   <span>
+  <li class="tag_lists_sub">
     <%= link_to list.tag_name, tag_travels_path(tag_id: list.id) %>
     <%= "(#{list.travels.count})" %><br>
+  </li>
   </span>
 <% end %>
+</ul>
+
+<%# 検索結果一覧 %>
 </div>
 <%= "タグが - " %>
   <strong><%= "#{@tag.tag_name}" %>

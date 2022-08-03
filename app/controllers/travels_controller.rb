@@ -4,7 +4,7 @@ class TravelsController < ApplicationController
 
   def index
     @travels = Travel.limit(12).order('id DESC')
-    @tag_list = Tag.all.order("id DESC")
+    @tag_list = Tag.all.order("updated_at DESC")
   end
 
   def new
@@ -55,7 +55,7 @@ class TravelsController < ApplicationController
   def search
     @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @travels = @tag.travels.all.page(params[:page]).per(5).order("id DESC")
+    @travels = @tag.travels.all.page(params[:page]).per(2).order("id DESC")
   end
 
   private

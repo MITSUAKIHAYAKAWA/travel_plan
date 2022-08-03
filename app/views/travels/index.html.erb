@@ -5,19 +5,19 @@
   <div class="main">
     <div class="title-contents">
       <div class="title-contents-one">
-        <h1 class="title-message-one">
+        <h1>
           旅の思い出をみんなで共有
         </h1>
-        <h3 class="title-message-one_sub">
+        <h3>
           あなたの旅はどんなもの？<br>
           あなたの思い出が次は誰かの旅になる。
         </h3>
       </div>
       <div class="title-contents-two">
-        <h1 class="title-message-two">
+        <h1>
           新しい旅を見つけよう！
         </h1>
-        <h3 class="title-message-two_sub">
+        <h3>
           次はどこに行こうかな？<br>
           悩む時間も楽しくて。
         </h3>
@@ -32,16 +32,18 @@
   <%= render "shared/search-form" %>
   
   <%# タグ一覧%>
-  <div class="tag_lists">
-    <% @tag_list.each do |list| %>
-    <%= link_to list.tag_name, tag_travels_path(tag_id: list.id) %>
-    <%= "(#{list.travels.count})" %>
-    <% end %>
-  </div>
+    <ul class="tag_lists">
+      <% @tag_list.each do |list| %>
+        <li class="tag_lists_sub">
+          <%= link_to list.tag_name, tag_travels_path(tag_id: list.id) %>
+          <%= "(#{list.travels.count})" %>
+        </li>
+      <% end %>
+    </ul>
 
   <%# 投稿一覧 %>
   <div class="newest">最新12件を表示</div>
-  <div class="lists">
+  <ul class="lists">
     <% @travels.each do |travel| %>
     <li class='list'>
       <%= link_to "/travels/#{travel.id}" do %>
@@ -67,7 +69,7 @@
       </div>
     </li>
     <% end %>
-  </div>
+  </ul>
 </div>
 
 <%= render "shared/footer" %>

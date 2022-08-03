@@ -28,6 +28,23 @@ a {
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
 }
 
+.tag_lists {
+  display: block;
+  margin: 0 auto;
+  list-style: none;
+  display: flex;
+  font-size: 18px;
+  flex-wrap: wrap;
+}
+
+.tag_lists_sub {
+  width: fit-content;
+  margin: 12px;
+  border: 1px solid #000000;
+  border-radius: 15px;
+  padding: 2px 5px;
+}
+
 .newest {
   height: 45px;
   margin: 50px 0 30px 10px;

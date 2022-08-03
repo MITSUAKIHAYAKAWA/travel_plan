@@ -7,8 +7,8 @@
   <% unless current_page?(new_user_session_path) || current_page?(new_user_registration_path) %>
     <% if current_page?("/travels/#{@travel.id}") && user_signed_in? && current_user.id == @travel.user.id %>
     <ul class="page_btn_list">
-      <li><%= link_to "編集", edit_travel_path(@travel.id), class:"page_edit" %></li>
-      <li><%= link_to "削除", travel_path(@travel.id), method: :delete, class:"page_destroy" %></li>
+      <li><%= link_to "編集", edit_travel_path(@travel.id), class:"page_btn" %></li>
+      <li><%= link_to "削除", travel_path(@travel.id), method: :delete, class:"page_btn" %></li>
     </ul>
     <% else %>
       <% if current_page?("/travels/#{@travel.id}") && user_signed_in? && current_user.id != @travel.user.id %>
