@@ -1,6 +1,8 @@
 class FavoritesController < ApplicationController
+  before_action :set_travel_params
+
+
   def create
-    @travel = Travel.find(params[:travel_id])
     favorite = @travel.favorites.new(user_id: current_user.id)
     if favorite.save
       redirect_to request.referer
@@ -10,7 +12,6 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @travel = Travel.find(params[:travel_id])
     favorite = @travel.favorites.find_by(user_id: current_user.id)
     if favorite.present?
       favorite.destroy
@@ -19,4 +20,11 @@ class FavoritesController < ApplicationController
       redirect_to request.referer
     end
   end
+
+  private
+
+  def set_travel_params
+    @travel = Travel.find(params[:travel_id])
+  end
+  
 end

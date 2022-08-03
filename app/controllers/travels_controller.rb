@@ -1,9 +1,10 @@
 class TravelsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :destroy]
+  before_action :set_travel_params, only: [:show, :edit, :update, :destroy]
 
   def index
     @travels = Travel.limit(12).order('id DESC')
-    @tag_list = Tag.all
+    @tag_list = Tag.all.order("id DESC")
   end
 
   def new
@@ -26,7 +27,6 @@ class TravelsController < ApplicationController
   end
 
   def show
-    @travel = Travel.find(params[:id])
     @travel_impression = TravelImpression.new
     travel_id = @travel.id
     @impression = TravelImpression.find_by(travel_id: travel_id)
@@ -34,16 +34,13 @@ class TravelsController < ApplicationController
   end
 
   def edit
-    @travel = Travel.find(params[:id])
     @tag_list = @travel.tags.pluck(:tag_name).join(',')
   end
 
   def update
-    @travel = Travel.find(params[:id])
     tag_list = params[:travel][:tag_name].split(',')
     @travel.save_tag(tag_list)
     if @travel.update(travel_params)
-
       redirect_to travel_path(@travel.id)
     else
       render :edit
@@ -51,7 +48,6 @@ class TravelsController < ApplicationController
   end
 
   def destroy
-    @travel = Travel.find(params[:id])
     @travel.destroy
     redirect_to root_path
   end
@@ -68,4 +64,9 @@ class TravelsController < ApplicationController
     params.require(:travel).permit(:travel_title, :travel_time_one, :travel_time_two, :destination_id, :transportation_id,
                                    :image).merge(user_id: current_user.id)
   end
+
+  def set_travel_params
+    @travel = Travel.find(params[:id])
+  end
+  
 end
