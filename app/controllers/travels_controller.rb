@@ -3,7 +3,8 @@ class TravelsController < ApplicationController
   before_action :set_travel_params, only: [:show, :edit, :update, :destroy]
 
   def index
-    @travels = Travel.limit(12).order('id DESC')
+    @travel = Travel.all
+    @travels = Travel.all.page(params[:page]).per("12").order('id DESC')
     @tag_list = Tag.all.order("updated_at DESC")
   end
 

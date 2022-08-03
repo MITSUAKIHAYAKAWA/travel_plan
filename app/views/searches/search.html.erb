@@ -1,5 +1,7 @@
 <%= render "shared/header" %>
+
 <%= render "shared/search-form" %>
+
 <table class="table table-hover table-inverse">
   <% if @users.present? || @travels.present? %>
     <% if @range == "User" %>
@@ -12,18 +14,18 @@
         <%= paginate(@users) %>
       </tbody>
     <% else %>
-      <tbody>
+      <tbody class="search-result">
         <% @travels.each do |travel| %>
           <tr>
               <td><%= image_tag travel.image.variant(resize: "300x300") %></td>
               <td><%= travel.travel_title %></td>
           </tr>
         <% end %>
-        <%= paginate(@travels) %>
       </tbody>
     <% end %>
   <% else %>
     検索結果はありませんでした
   <% end %>
 </table>
+<%= paginate(@travels) %>
 <%= render "shared/footer" %>

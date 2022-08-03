@@ -42,7 +42,7 @@
     </ul>
 
   <%# 投稿一覧 %>
-  <div class="newest">最新12件を表示</div>
+  <div class="newest"><%= "全#{@travel.count()}件中#{@travels.count()}件を表示" %></div>
   <ul class="lists">
     <% @travels.each do |travel| %>
     <li class='list'>
@@ -70,6 +70,7 @@
     </li>
     <% end %>
   </ul>
+  <%= paginate(@travels) %>
 </div>
 
 <%= render "shared/footer" %>
