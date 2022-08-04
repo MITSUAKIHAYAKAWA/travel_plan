@@ -7,15 +7,17 @@
     <div class="show_photo">
       <%= image_tag @travel.image , class:"show_photo_sub" %>
     </div>
-    <p class="show_tags_tag">登録タグ</p>
-    <div class="show_tags" >
-      <% @travel_tags.each do |tag| %>
-        <span><%= link_to tag.tag_name, tag_travels_path(tag_id: tag.id) %></span>
-        <div class="show_tags">
-          <%= "(#{tag.travels.count})" %>
-        </div>
-      <% end %>
-    </div>
+      <div class="travel_comment">
+        <p class="travel_times">登録タグ：</p>
+        <ul class="tag_lists">
+          <% @travel_tags.each do |tag| %>
+            <li class="tag_lists_sub">
+              <%= link_to tag.tag_name, tag_travels_path(tag_id: tag.id) %>
+              <%= "(#{tag.travels.count})" %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
   </div>
 
   <%# 投稿コンテンツ表示欄 %>
@@ -68,6 +70,7 @@
       <h1 class="no_post">まだ投稿されていません</h1>
     <% end %>
 
+    <%# 旅行の感想を投稿 %>
     <% if user_signed_in? && current_user.id == @travel.user_id && !@impression.present? %>
     <div class="impression-form">
       <%= form_with(model: [@travel, @travel_impression], local: true) do |form| %>

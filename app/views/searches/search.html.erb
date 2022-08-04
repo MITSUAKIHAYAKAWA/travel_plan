@@ -14,14 +14,18 @@
         <%= paginate(@users) %>
       </tbody>
     <% else %>
-      <tbody class="search-result">
-        <% @travels.each do |travel| %>
-          <tr>
-              <td><%= image_tag travel.image.variant(resize: "300x300") %></td>
-              <td><%= travel.travel_title %></td>
-          </tr>
-        <% end %>
-      </tbody>
+        <ul class="lists">
+          <% @travels.each do |travel| %>
+            <li class='list'>
+              <%= link_to "/travels/#{travel.id}" do %>
+                <div class='travel-img-content'>
+                    <%= image_tag travel.image.variant(resize: "300x300"), class: "travel-img" %>
+                </div>
+                <%= travel.travel_title %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
     <% end %>
   <% else %>
     検索結果はありませんでした

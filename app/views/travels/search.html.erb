@@ -17,15 +17,20 @@
 <%# 検索結果一覧 %>
 </div>
 <%= "タグが - " %>
-  <strong><%= "#{@tag.tag_name}" %>
-<%= " - の投稿者一覧" %><br>
-<% @travels.each do |travel| %>
-  <%= link_to "/travels/#{travel.id}" do %>
-    <div class='travel-img-content'>
-      <%= image_tag travel.image, class: "travel-img" %>
-    </div>
+  <div class="tag_lists_sub"><%= "#{@tag.tag_name}" %></div>
+<%= " - の投稿一覧" %><br>
+<ul class="lists">
+  <% @travels.each do |travel| %>
+    <li class='list'>
+      <%= link_to "/travels/#{travel.id}" do %>
+        <div class='travel-img-content'>
+          <%= image_tag travel.image, class: "travel-img" %>
+        </div>
+      <% end %>
+      <%= travel.travel_title %>
+      <%= travel.user.nickname %>
+    </li>
   <% end %>
-  <%= travel.travel_title %>
-  <%= travel.user.nickname %>
-<% end %>
+</ul>
 <%= paginate(@travels) %>
+
