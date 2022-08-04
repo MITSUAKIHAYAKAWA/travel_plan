@@ -4,7 +4,7 @@ class Travel < ApplicationRecord
   has_one :travel_impression, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :travel_tags, dependent: :destroy
-  has_many :tags, through: :travel_tags
+  has_many :tags, through: :travel_tags, dependent: :destroy
 
   def favorited_by?(user)
     favorites.where(user_id: user).exists?
