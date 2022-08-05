@@ -4,6 +4,21 @@
     <div class="travel_title_show">
       <%= @travel.travel_title %>
     </div>
+    <%#　詳細ページ・編集削除・ブックマーク　%>
+    <% if user_signed_in? && current_user.id == @travel.user.id %>
+      <ul class="page_btn_list">
+        <li><%= link_to "編集", edit_travel_path(@travel.id), class:"page_btn" %></li>
+        <li><%= link_to "削除", travel_path(@travel.id), method: :delete, class:"page_btn" %></li>
+      </ul>
+    <% else %>
+      <% if user_signed_in? && current_user.id != @travel.user.id && @travel.favorited_by?(current_user) %>
+        <td><%= link_to "ブックマークを外す", travel_favorite_path(@travel), method: :delete, class:"favorite_break" %></td>
+      <% else %>
+        <td><%= link_to "ブックマーク", travel_favorites_path(@travel), method: :post, class:"favorite_entry" %></td>
+      <% end %>
+    <% end%>
+
+    <%# 旅行の画像とタグを表示 %>
     <div class="show_photo">
       <%= image_tag @travel.image , class:"show_photo_sub" %>
     </div>
@@ -75,7 +90,8 @@
     <div class="impression-form">
       <%= form_with(model: [@travel, @travel_impression], local: true) do |form| %>
         <%= form.text_area :impression, placeholder: "旅行の感想を書こう", class:"impression" %>
-        <%= form.file_field :images, multiple: true, class:"impression_image_form" %>
+        <%= form.label :images, "写真を選択", class:"image_input_btn" %>
+        <%= form.file_field :images, multiple: true, class:"image_form" %>
         <%= form.submit "送信する", class:"impressino_submit_btn" %>
       <% end %>
     </div>

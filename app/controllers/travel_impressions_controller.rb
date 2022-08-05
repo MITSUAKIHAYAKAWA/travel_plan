@@ -8,6 +8,7 @@ class TravelImpressionsController < ApplicationController
     if @travel_impression.save
       redirect_to "/travels/#{@travel_impression.travel_id}"
     else
+      @travel_tags = @travel.tags
       render 'travels/show'
     end
   end
