@@ -3,7 +3,7 @@
 }
 
 .show_content_top {
-  height: 500px;
+  height: 600px;
   margin: 40px 0;
 }
 
@@ -61,8 +61,23 @@ img.show_photo_sub {
   padding-left: 20px;
 }
 
+.comment-edit-btn_main {
+  margin: 20px;
+  text-align: right;
+}
+
+.comment-edit-btn {
+  font-size: 20px;
+  line-height: 20px;
+  width: fit-content;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 .container_size {
   height: 700px;
+  width: 100vw;
   padding: 50px;
 }
 
@@ -163,6 +178,10 @@ img.show_photo_sub {
   text-align: center;
 }
 
+.travel-comment {
+  margin: 30px 0;
+}
+
 .travel-comments_sub {
   font-size: 20px;
   font-weight: 400;
@@ -182,29 +201,112 @@ img.show_photo_sub {
   border-radius: 10px;
   display: block;
   margin: 0 auto;
+  font-size: 20px;
+  padding: 20px 45px;
 }
 
 .impression::placeholder {
+  height: 400px;
+  line-height: 400px;
   text-align: center;
   font-size: 20px;
-  height: 100%;
-  line-height: 400px;
 }
 
 .image_input_btn {
   display: block;
-  background-color: #228B22;
+  background-color: #59b300;
   width: 180px;
-  height: 30px;
-  margin-top: 10px;
+  height: 60px;
   margin-left: 10px;
   border-radius: 20px;
-  padding-top: 2px;
+  padding: 10px;
   color: white;
   text-decoration: none;
   text-align: center;
+  cursor: pointer;
+  box-shadow: 6px 6px 3px #666666;
+  border: 2px solid #59b300; 
+  font-size: 18pt;
+  transition    : .3s;
+}
+
+.image_input_btn:hover {
+  box-shadow    : none;
+  color         : #59b300;
+  background    : #ffffff;
 }
 
 .image_form{
   display: none;
+}
+
+.line-it-button {
+  margin: 5px 0 0 10vw;
+}
+
+.page_btn_lists {
+  display: flex;
+  justify-content: space-between;
+  height: 60px;
+}
+
+.page_btn_list {
+  list-style: none;
+  margin-right: 3vw;
+  display: flex;
+  height: 20px;
+}
+
+.page_btn {
+  margin-left: 30px;
+  font-size: 20px;
+  line-height: 20px;
+  width: fit-content;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.favorite_btn {
+  font-size: 20px;
+  width: fit-content;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 6vw 0;
+}
+
+.show_tag_lists {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 5px;
+}
+
+.impression_submit_btn {
+  display       : inline-block;
+  border-radius : 20px;
+  font-size     : 18pt;
+  text-align    : center;
+  cursor        : pointer;
+  padding       : 12px 12px;
+  background    : #59b300;
+  color         : #ffffff;
+  line-height   : 1em;
+  transition    : .3s;
+  box-shadow    : 6px 6px 3px #666666;
+  border        : 2px solid #59b300; 
+}
+
+.impression_submit_btn:hover {
+  box-shadow    : none;
+  color         : #59b300;
+  background    : #ffffff;
+}
+
+.btn-lists {
+  height: 60px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-around;
 }

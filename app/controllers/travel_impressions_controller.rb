@@ -14,7 +14,7 @@ class TravelImpressionsController < ApplicationController
   end
 
   def edit
-    @travel = Travel.find(params[:id])
+    @travel = Travel.find(params[:travel_id])
     travel_id = @travel.id
   end
 
@@ -39,7 +39,7 @@ class TravelImpressionsController < ApplicationController
   end
 
   def set_travel_impression
-    @travel_impression = TravelImpression.find_by(travel_id: travel_id)
+    @travel_impression = TravelImpression.find_by(travel_id: params[:travel_id])
   end
 
 end

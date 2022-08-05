@@ -4,42 +4,71 @@
     <div class="travel_title_show">
       <%= @travel.travel_title %>
     </div>
-    <div class="line-it-button" data-lang="ja" data-type="share-c" data-env="REAL" url=#{request.url} data-color="default" data-size="small" data-count="false" data-ver="3" style="display: none;"></div>
-    <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
     <%#　詳細ページ・編集削除・ブックマーク　%>
-    <% if user_signed_in? && current_user.id == @travel.user.id %>
-      <ul class="page_btn_list">
-        <li><%= link_to "編集", edit_travel_path(@travel.id), class:"page_btn" %></li>
-        <li><%= link_to "削除", travel_path(@travel.id), method: :delete, class:"page_btn" %></li>
-      </ul>
-    <% else %>
-      <% if user_signed_in? && current_user.id != @travel.user.id && @travel.favorited_by?(current_user) %>
-        <td><%= link_to "ブックマークを外す", travel_favorite_path(@travel), method: :delete, class:"favorite_break" %></td>
+    <div class="page_btn_lists">
+      <div class="line-it-button" data-lang="ja" data-type="share-b" data-env="REAL" url="#{request.url}" data-color="default" data-size="large" data-count="false" data-ver="3" style="display: none;"></div>
+      <script src="https://www.line-website.com/social-plugins/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+      <% if user_signed_in? && current_user.id == @travel.user.id %>
+        <ul class="page_btn_list">
+          <li><%= link_to "編集", edit_travel_path(@travel.id), class:"page_btn" %></li>
+          <li><%= link_to "削除", travel_path(@travel.id), method: :delete, class:"page_btn" %></li>
+        </ul>
       <% else %>
-        <td><%= link_to "ブックマーク", travel_favorites_path(@travel), method: :post, class:"favorite_entry" %></td>
-      <% end %>
-    <% end%>
+        <% if user_signed_in? && current_user.id != @travel.user.id %>
+          <% if @travel.favorited_by?(current_user) %>
+            <td><%= link_to "ブックマークを外す", travel_favorite_path(@travel), method: :delete, class:"favorite_btn" %></td>
+          <% else %>
+            <td><%= link_to "ブックマーク", travel_favorites_path(@travel), method: :post, class:"favorite_btn" %></td>
+          <% end %>
+        <% end %>
+      <% end%>
+    </div>
 
     <%# 旅行の画像とタグを表示 %>
     <div class="show_photo">
       <%= image_tag @travel.image , class:"show_photo_sub" %>
     </div>
-      <div class="travel_comment">
-        <p class="travel_times">登録タグ：</p>
-        <ul class="tag_lists">
-          <% @travel_tags.each do |tag| %>
-            <li class="tag_lists_sub">
-              <%= link_to tag.tag_name, tag_travels_path(tag_id: tag.id) %>
-              <%= "(#{tag.travels.count})" %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+    <div class="travel_comment">
+      <p class="travel_times">登録タグ：</p>
+      <ul class="show_tag_lists">
+        <% @travel_tags.each do |tag| %>
+          <li class="tag_lists_sub">
+            <%= link_to tag.tag_name, tag_travels_path(tag_id: tag.id) %>
+            <%= "(#{tag.travels.count})" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
   </div>
 
   <%# 投稿コンテンツ表示欄 %>
   <div class="show_contents">
     
+    <div class="comment-edit-btn_main">
+      <% if user_signed_in? && current_user.id == @travel.user_id && @impression.present? %>
+        <%= link_to "コメントを編集する", edit_travel_travel_impression_path(@impression.id), class:"comment-edit-btn" %>
+      <% end %>
+    </div>
+    
+    <%# 詳細コメント・画像コンテンツを表示 %>
+    <% if @impression.present? %>
+      <% if @impression.images.present? %>
+        <div class="container_size">
+          <%# 画像をスライダーで表示 %>
+          <div class="container">
+            <div class="btn btn-prev js-prev-btn"></div>
+            <div class="btn btn-next js-next-btn"></div>
+            <div class="slider-container">
+              <ul class="slider-list js-slider-container">
+                <% @impression.images.each do |image| %>
+                  <li class="slider-item js-slider-item"><%= image_tag image, class:"impression_image" %></li>
+                <% end%>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
     <div class="travel_comment">
       <p class="travel_times">旅行期間：</p>
       <div class="travel_time_main">
@@ -49,27 +78,6 @@
         <p class="travel_times">旅行先：</p>
         <div class="travel_time_main">
           <%= @travel.destination.name %>
-        </div>
-      </div>
-    </div>
-
-    <% if user_signed_in? && current_user.id == @travel.user_id && @impression.present? %>
-      <%= link_to "コメントを編集する", edit_travel_travel_impression_path(@impression.id) %>
-    <% end %>
-    
-    <%# 詳細コメント・画像コンテンツを表示 %>
-    <div class="container_size">
-    <% if @impression.present? %>
-      <%# 画像をスライダーで表示 %>
-      <div class="container">
-        <div class="btn btn-prev js-prev-btn"></div>
-        <div class="btn btn-next js-next-btn"></div>
-        <div class="slider-container">
-          <ul class="slider-list js-slider-container">
-            <% @impression.images.each do |image| %>
-              <li class="slider-item js-slider-item"><%= image_tag image, class:"impression_image" %></li>
-            <% end%>
-          </ul>
         </div>
       </div>
     </div>
@@ -92,9 +100,11 @@
     <div class="impression-form">
       <%= form_with(model: [@travel, @travel_impression], local: true) do |form| %>
         <%= form.text_area :impression, placeholder: "旅行の感想を書こう", class:"impression" %>
-        <%= form.label :images, "写真を選択", class:"image_input_btn" %>
-        <%= form.file_field :images, multiple: true, class:"image_form" %>
-        <%= form.submit "送信する", class:"impressino_submit_btn" %>
+        <div class="btn-lists">
+          <%= form.label :images, "写真を選択", class:"image_input_btn" %>
+          <%= form.file_field :images, multiple: true, class:"image_form" %>
+          <%= form.submit "送信する", class:"impression_submit_btn" %>
+        </div>
       <% end %>
     </div>
     <% end %>

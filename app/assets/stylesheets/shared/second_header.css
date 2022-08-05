@@ -26,25 +26,3 @@ a {
   height: 100%;
 }
 
-.page_btn_list {
-  list-style: none;
-  margin-right: 10vw;
-  flex-wrap: wrap;
-}
-
-.page_btn {
-  margin-left: 100px;
-  font-size: 20px;
-  width: fit-content;
-  display: flex;
-}
-
-.favorite_break {
-  margin-right: 200px;
-  font-size: 20px;
-}
-
-.favorite_entry {
-  margin-right: 200px;
-  font-size: 20px;
-}
