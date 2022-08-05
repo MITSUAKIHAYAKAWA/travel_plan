@@ -68,6 +68,7 @@
           </div>
         </div>
       <% end %>
+    <% end %>
 
     <div class="travel_comment">
       <p class="travel_times">旅行期間：</p>
@@ -83,6 +84,7 @@
     </div>
 
       <%# 旅行の感想を表示 %>
+    <% if @impression.present? %>
       <div class="travel-comments">
         <div class="travel-comment">
           <%= image_tag("memory.png") %>

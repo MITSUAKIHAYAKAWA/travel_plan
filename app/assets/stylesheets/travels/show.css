@@ -310,3 +310,7 @@ img.show_photo_sub {
   display: flex;
   justify-content: space-around;
 }
+
+.no_post {
+  text-align: center;
+}
