@@ -7,11 +7,13 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :nickname
     validates :name
+    validates :password, on: :create
   end
 
   has_many :travels
   has_many :impressions
   has_many :favorites, dependent: :destroy
+  has_one_attached :avatar
 
   def self.looks(search, key_word)
     @user = if search == 'perfect_match'

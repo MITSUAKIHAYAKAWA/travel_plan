@@ -2,17 +2,25 @@
 
 <%= render "shared/search-form" %>
 
-<table class="table table-hover table-inverse">
+<div class="table table-hover table-inverse">
   <% if @users.present? || @travels.present? %>
     <% if @range == "User" %>
-      <tbody>
+      <ul class="user-lists">
         <% @users.each do |user| %>
-          <tr>
-            <td><%= user.nickname %></td>
-          </tr>
+          <div class="user-list">
+            <%= link_to "/users/#{user.id}" do %>
+              <% if user.avatar.attached? %>
+                <li class="my-icon" ><%= image_tag user.avatar, class:"my-icon_s" %></li>
+                <li><%= user.nickname %></li>
+              <% else %>
+                <li class="my-icon" ><%= image_tag "camera.png", class:"sample-user-icon" %></li>
+                <li><%= user.nickname %></li>
+              <% end %>
+            <% end %>
+          </div>
         <% end %>
         <%= paginate(@users) %>
-      </tbody>
+      </ul>
     <% else %>
         <ul class="lists">
           <% @travels.each do |travel| %>
@@ -25,11 +33,11 @@
               <% end %>
             </li>
           <% end %>
+          <%= paginate(@travels) %>
         </ul>
     <% end %>
   <% else %>
     検索結果はありませんでした
   <% end %>
-</table>
-<%= paginate(@travels) %>
+</div>
 <%= render "shared/footer" %>

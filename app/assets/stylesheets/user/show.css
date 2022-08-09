@@ -1,0 +1,44 @@
+.user-posts {
+  width: fit-content;
+  margin: 20px 0 0 100px;
+  border-bottom: 2px solid #000000;
+  border-left: 2px solid #000000;
+  padding: 0 0 5px 5px;
+}
+
+.my-icon {
+  display: block;
+  margin: 0 auto;
+  width: 150px;
+  height: 150px;
+  background-color: #A9CEEC;
+  border: 1px solid #A9CEEC;
+  border-radius: 180px;
+}
+
+img.my-icon_s {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 180px;
+}
+
+.sample-user-icon {
+  background-color: #a9ceec;
+  border: 1px solid #A9CEEC;
+}
+
+img.sample-user-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 180px;
+}
+
+.user-name {
+  text-align: center;
+  font-size: 18px;
+  line-height: 18px;
+  margin-top: 30px;
+  font-weight: 400;
+}
