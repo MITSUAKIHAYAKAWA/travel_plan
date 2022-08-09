@@ -1,13 +1,39 @@
 <%= render "shared/header" %>
 
 <div class="mypage">
-<% if @user.avatar.attached? %>
-  <div class="my-icon">
-    <%= image_tag @user.avatar, class:"my-icon_s" %>
+  <% if @user.avatar.attached? %>
+    <div class="my-icon">
+      <%= image_tag @user.avatar, class:"my-icon_s" %>
+    </div>
+  <% else %>
+    <div class="my-icon">
+      <%= image_tag "camera.png", class:"sample-user-icon" %>
+    </div>
+  <% end %>
+  <div class="user-name">
+    <%= "#{@user.nickname}" + "さんのマイページ" %>
   </div>
-<% else %>
-  <div class="my-icon">
-    <%= image_tag "camera.png", class:"sample-user-icon" %>
-  </div>
-<% end %>
+  <h2 class="user-posts">投稿一覧</h2>
+  <ul class="lists">
+    <% @user.travels.each do |travels| %>
+      <li class='list'>
+        <div class='travel-img-content'>
+          <%= image_tag travels.image, class: "travel-img" %>
+        </div>
+        <div class='travel-info'>
+          <div class='travel-title'>
+            <%= travels.travel_title %>
+          </div>
+          <div class="travel-gone">
+          <div class="travel-destination">
+            <%= travels.destination.name %>
+          </div>
+          <div class="travel-time">
+            <%= travels.travel_time_one %> 〜 <%= travels.travel_time_two %>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  </ul>
 </div>
+
