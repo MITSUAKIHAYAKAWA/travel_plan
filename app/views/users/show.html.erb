@@ -1,1 +1,13 @@
 <%= render "shared/header" %>
+
+<div class="mypage">
+<% if @user.avatar.attached? %>
+  <div class="my-icon">
+    <%= image_tag @user.avatar, class:"my-icon_s" %>
+  </div>
+<% else %>
+  <div class="my-icon">
+    <%= image_tag "camera.png", class:"sample-user-icon" %>
+  </div>
+<% end %>
+</div>
