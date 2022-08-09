@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   private
 
   def congigure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname, :name, :avatar])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:nickname, :avatar])
   end
 end
