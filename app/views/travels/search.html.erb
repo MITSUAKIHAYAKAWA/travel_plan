@@ -1,3 +1,6 @@
+<%= render "shared/second-header" %>
+
+
 <h2><%= link_to "投稿一覧", root_path %></h2>
 <%# タグ一覧 %>
 <div class="tag-search">
@@ -32,5 +35,6 @@
     </li>
   <% end %>
 </ul>
-<%= paginate(@travels) %>
-
+<div class="tag-pagination">
+  <%= paginate(@travels) %>
+</div>
