@@ -11,6 +11,7 @@
             <li><%= current_user.nickname %></li>
             <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
             <li><%= link_to 'マイページ', "/users/#{current_user.id}" %></li>
+            <li><%= link_to 'アカウント情報編集', edit_user_registration_path(current_user.id) %>
             <li><%= link_to 'ブックマーク', "#" %></li>
           <% else %>
             <li><%= link_to 'ログイン', new_user_session_path %></li>
