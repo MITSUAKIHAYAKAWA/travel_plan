@@ -1,6 +1,6 @@
 class TravelImpressionsController < ApplicationController
   before_action :set_travel_params, only: [:create, :update]
-  before_action :set_travel_impression, only: [:edit, :update]
+  before_action :set_travel_impression, only: :update
 
 
   def create
@@ -14,12 +14,12 @@ class TravelImpressionsController < ApplicationController
   end
 
   def edit
-    @travel = Travel.find(params[:travel_id])
+    @travel = Travel.find(params[:id])
     travel_id = @travel.id
+    @travel_impression = TravelImpression.find_by(travel_id: travel_id)
   end
 
   def update
-    travel_id = @travel.id
     if @travel_impression.update(travel_impression_params)
       redirect_to travel_path(@travel.id)
     else
