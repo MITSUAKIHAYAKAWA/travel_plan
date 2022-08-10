@@ -42,3 +42,24 @@
   color: #84b8eb;
   padding: 10px;
 }
+
+.tag-search-result {
+  display: flex;
+  height: 45px;
+  margin: 50px 0 30px 10px;
+  line-height: 30px;
+  font-size: 30px;
+  border-bottom: 2px solid #000000;
+  border-left: 3px double #000000;
+  padding: 0 0 15px 15px;
+}
+
+.tag_lists_result {
+width: fit-content;
+height: fit-content;
+border: 1px solid #000000;
+border-radius: 15px;
+background-color: #f2f2f2;
+margin: 0 15px;
+padding: 0 5px;
+}

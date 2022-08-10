@@ -1,27 +1,28 @@
 <%= render "shared/second-header" %>
 
 
-<h2><%= link_to "投稿一覧", root_path %></h2>
 <%# タグ一覧 %>
 <div class="tag-search">
-<ul class="tag_lists">
-<% @tag_list.each do |list| %>
-  <span>
-  <% unless list.travels.count == 0 %>
-  <li class="tag_lists_sub">
-    <%= link_to list.tag_name, tag_travels_path(tag_id: list.id) %>
-    <%= "(#{list.travels.count})" %><br>
-  </li>
-  <% end %>
-  </span>
-<% end %>
-</ul>
+  <ul class="tag_lists">
+    <% @tag_list.each do |list| %>
+      <span>
+      <% unless list.travels.count == 0 %>
+      <li class="tag_lists_sub">
+        <%= link_to list.tag_name, tag_travels_path(tag_id: list.id) %>
+        <%= "(#{list.travels.count})" %><br>
+      </li>
+      <% end %>
+      </span>
+    <% end %>
+  </ul>
+</div>
 
 <%# 検索結果一覧 %>
+<div class="tag-search-result">
+  <%= "タグが - " %>
+    <div class="tag_lists_result"><%= @tag.tag_name %></div>
+  <%= " - の投稿一覧" %>
 </div>
-<%= "タグが - " %>
-  <div class="tag_lists_sub"><%= "#{@tag.tag_name}" %></div>
-<%= " - の投稿一覧" %><br>
 <ul class="lists">
   <% @travels.each do |travel| %>
     <li class='list'>

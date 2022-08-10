@@ -17,9 +17,11 @@
   <ul class="lists">
     <% @user.travels.each do |travels| %>
       <li class='list'>
-        <div class='travel-img-content'>
-          <%= image_tag travels.image, class: "travel-img" %>
-        </div>
+        <%= link_to "/travels/#{travels.id}" do %>
+          <div class='travel-img-content'>
+            <%= image_tag travels.image, class: "travel-img" %>
+          </div>
+        <% end %>
         <div class='travel-info'>
           <div class='travel-title'>
             <%= travels.travel_title %>

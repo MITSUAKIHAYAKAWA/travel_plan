@@ -1,16 +1,19 @@
-.search-form {
+.search_form {
   width: 65vw;
-  height: 25px;
-  display: flex;
+  height: 80px;
+  display: block;
+  margin: 0 auto;
   margin-bottom: 5px;
 }
 
 .search_form_main {
-  width: 60%;
-  display: block;
-  margin: 15px auto;
+  width: 65vw;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.range_type {
-  height: 50px;
+.key_word_sub {
+  width: 300px;
 }

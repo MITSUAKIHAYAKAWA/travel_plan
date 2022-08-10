@@ -81,6 +81,12 @@
           <%= @travel.destination.name %>
         </div>
       </div>
+      <div class="travel-des">
+        <p class="travel_times">投稿者：</p>
+        <div class="travel_time_main">
+          <%= link_to @travel.user.nickname, "/users/#{@travel.user.id}" %>
+        </div>
+      </div>
     </div>
 
       <%# 旅行の感想を表示 %>

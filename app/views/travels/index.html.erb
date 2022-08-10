@@ -32,6 +32,7 @@
   <%= render "shared/search-form" %>
   
   <%# タグ一覧%>
+  <div class="tag-index">タグ一覧</div>
     <ul class="tag_lists">
       <% @tag_list.each do |list| %>
         <% unless list.travels.count == 0 %>

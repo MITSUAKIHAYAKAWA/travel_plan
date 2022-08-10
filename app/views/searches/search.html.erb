@@ -2,7 +2,7 @@
 
 <%= render "shared/search-form" %>
 
-<div class="table table-hover table-inverse">
+<div class="search-result">
   <% if @users.present? || @travels.present? %>
     <% if @range == "User" %>
       <ul class="user-lists">
@@ -37,7 +37,7 @@
         </ul>
     <% end %>
   <% else %>
-    検索結果はありませんでした
+    <h2 class="no-result">検索結果はありませんでした</h2>
   <% end %>
 </div>
 <%= render "shared/footer" %>
