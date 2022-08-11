@@ -45,9 +45,11 @@
       期間
       <span class="indispensable">必須</span>
     </div>
-    <%= f.date_field :travel_time_one, placeholder: "day", class:"time-select-box" %>
-    〜
-    <%= f.date_field :travel_time_two, placeholder: "day", class:"time-select-box" %>
+    <div class="time">
+      <%= f.date_field :travel_time_one, placeholder: "day", class:"time-select-box" %>
+      〜
+      <%= f.date_field :travel_time_two, placeholder: "day", class:"time-select-box" %>
+    </div>
   </div>
   <div class="travel-content">
     <div class="weight-bold-text">
