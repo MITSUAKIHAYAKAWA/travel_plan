@@ -27,7 +27,7 @@
             <li class='list'>
               <%= link_to "/travels/#{travel.id}" do %>
                 <div class='travel-img-content'>
-                    <%= image_tag travel.image.variant(resize: "300x300"), class: "travel-img" %>
+                    <%= image_tag travel.image, class: "travel-img" %>
                 </div>
                 <%= travel.travel_title %>
               <% end %>
