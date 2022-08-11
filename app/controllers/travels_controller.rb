@@ -71,5 +71,3 @@ class TravelsController < ApplicationController
   end
   
 end
-
-@travels
