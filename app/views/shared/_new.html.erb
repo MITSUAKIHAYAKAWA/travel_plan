@@ -1,12 +1,30 @@
 <div class="travel-contents">
   <h3 class="travel-header-sub">旅行の記録を作成</h3>
   <%= form_with model: @travel, url: "/travels/#{@travel.id}", local: true do |f| %>
+  
+    
   <div class="travel-content">
     <div class="weight-bold-text">
       タイトル
       <span class="indispensable">必須</span>
     </div>
     <%= f.text_area :travel_title, class:"travel_text", id:"travel_title", placeholder:"タイトルを入力してください", maxlength:"40" %>
+  </div>
+  <div class="star-content">
+    <div class="star-evaluation" id="star">
+      <%= f.label :rate,  "今回の旅行の評価：" %>
+      <%= f.hidden_field :rate, id: :review_star %>
+      <script>
+        $('#star').raty({
+          size     : 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          scoreName: 'travel[rate]',
+          half: true,
+        });
+      </script>
+    </div>
   </div>
   <div class="travel-content">
     <div class="img-upload">
@@ -57,3 +75,4 @@
   </div>
   <% end %>
 </div>
+

@@ -63,7 +63,7 @@ class TravelsController < ApplicationController
 
   def travel_params
     params.require(:travel).permit(:travel_title, :travel_time_one, :travel_time_two, :destination_id, :transportation_id,
-                                   :image).merge(user_id: current_user.id)
+                                   :image, :rate).merge(user_id: current_user.id)
   end
 
   def set_travel_params
