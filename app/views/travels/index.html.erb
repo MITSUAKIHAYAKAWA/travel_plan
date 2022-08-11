@@ -76,6 +76,7 @@
               <% end %>
             <% end %>
           </div>
+          <% if travel.rate.present? %>
           <p class="mb-3">評価：</p>
           <div id="star-rate-<%= travel.id %>", class="star"></div>
           <script>
@@ -87,7 +88,8 @@
               half: true,
               score: <%= travel.rate %>,
             });
-          </script> 
+          </script>
+          <% end %>
         </div>
       </div>
     </li>
