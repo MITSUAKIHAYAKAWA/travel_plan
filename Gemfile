@@ -67,3 +67,4 @@ group :development do
 end
 
 gem 'kaminari'
+gem "aws-sdk-s3", require: false
