@@ -83,8 +83,14 @@
       </div>
       <div class="travel-des">
         <p class="travel_times">投稿者：</p>
-        <div class="travel_time_main">
-          <%= link_to @travel.user.nickname, "/users/#{@travel.user.id}" %>
+        <div class="travel-avatar">
+          <%= link_to "/users/#{@travel.user.id}" do %>
+            <% if @travel.user.avatar.attached? %>
+              <%= image_tag @travel.user.avatar, class:"sample-user-icon" %>
+            <% else %>
+              <%= image_tag "camera.png", class:"sample-user-icon" %>
+            <% end %>
+          <% end %>
         </div>
       </div>
     </div>
