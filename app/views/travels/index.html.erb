@@ -67,7 +67,25 @@
           </div>
         </div>
         <div class="travel_user">
-          <%= travel.user.nickname %>
+          <div class="travel-avatar">
+            <% if travel.user.avatar.attached? %>
+              <%= image_tag travel.user.avatar, class:"sample-user-icon" %>
+            <% else %>
+              <%= image_tag "camera.png", class:"sample-user-icon" %>
+            <% end %>
+          </div>
+          <p class="mb-3">評価：</p>
+          <div id="star-rate-<%= travel.id %>", class="star"></div>
+          <script>
+            $('#star-rate-<%= travel.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              score: <%= travel.rate %>,
+            });
+          </script> 
         </div>
       </div>
     </li>
