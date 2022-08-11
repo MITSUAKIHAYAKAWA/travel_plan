@@ -19,7 +19,9 @@
             <% end %>
           </div>
         <% end %>
-        <%= paginate(@users) %>
+        <div class="tag-pagination">
+          <%= paginate(@users) %>
+        </div>
       </ul>
     <% else %>
         <ul class="lists">
@@ -33,7 +35,9 @@
               <% end %>
             </li>
           <% end %>
-          <%= paginate(@travels) %>
+          <div class="tag-pagination">
+            <%= paginate(@travels) %>
+          </div>
         </ul>
     <% end %>
   <% else %>
