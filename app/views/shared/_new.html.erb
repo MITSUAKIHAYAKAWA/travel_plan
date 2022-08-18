@@ -1,6 +1,6 @@
 <div class="travel-contents">
   <h3 class="travel-header-sub">旅行の記録を作成</h3>
-  <%= form_with model: @travel, url: "/travels/#{@travel.id}", local: true do |f| %>
+  <%= form_with model: @travel, id: 'new_post', url: "/travels/#{@travel.id}", local: true do |f| %>
   
     
   <div class="travel-content">
@@ -32,6 +32,7 @@
         アイキャッチ
         <span class="indispensable">必須</span>
       </div>
+      <div id="previews"></div>
       <div class="click-upload">
         <p>
           クリックしてファイルをアップロード

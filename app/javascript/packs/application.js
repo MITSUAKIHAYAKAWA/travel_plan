@@ -9,6 +9,7 @@ require("@rails/activestorage").start()
 require("channels")
 require("../second_footer");
 require('jquery')
+require("../preview")
 
 $(function() {
   // DOMの取得
