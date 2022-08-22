@@ -2,6 +2,18 @@
   <div class="header-main">
     <%= link_to image_tag("title-logo.png", class: "logo"), root_path %>
   </div>
+  <div class="avatar-name">
+    <div class="travel-avatar">
+      <%= link_to "/users/#{current_user.id}" do %>
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar, class:"sample-user-icon" %>
+        <% else %>
+          <%= image_tag "camera.png", class:"sample-user-icon" %>
+        <% end %>
+      <% end %>
+    </div>
+    <h3><%= current_user.nickname %></h3>
+  </div>
   <div class="hamburger-menu">
       <input type="checkbox" id="menu-btn-check">
       <label for="menu-btn-check" class="menu-btn"><span></span></label>
